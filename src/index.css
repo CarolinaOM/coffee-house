@@ -1,3 +1,4 @@
+@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,7 +6,7 @@
 :root {
   --text: #6b6375;
   --text-h: #08060d;
-  --bg: #fff;
+  --bg: #ffffff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
@@ -59,25 +60,23 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  border: none; /* Quitamos el borde para un look más limpio tipo web moderna */
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background-color: #ffffff;
 }
 
 body {
   margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+  background-color: #ffffff; /* Fondo completamente blanco */
 }
 
 h1 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
@@ -86,15 +85,12 @@ h1 {
     margin: 20px 0;
   }
 }
+
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+  font-family: var(--heading);
+  font-weight: 500;
 }
+
 p {
   margin: 0;
 }
