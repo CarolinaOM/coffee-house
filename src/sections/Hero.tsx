@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-full flex items-center justify-center text-center overflow-hidden py-4">
+    <section className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
@@ -38,12 +39,12 @@ const Hero = () => {
           >
             Quiero ver el menú
           </a>
-          <a 
-            href="#about"
+          <Link 
+            to="/nosotros"
             className="bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-md font-semibold px-7 py-3 rounded-full transition-all text-sm no-underline"
           >
             Nuestra historia
-          </a>
+          </Link>
         </div>
       </motion.div>
     </section>
