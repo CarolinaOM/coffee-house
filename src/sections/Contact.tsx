@@ -1,4 +1,34 @@
+import React, { useState } from 'react';
+
 const Contact = () => {
+  const [enviado, setEnviado] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xjybweaq", {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setEnviado(true);
+        form.reset();
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    }
+  };
+
   return (
     <section id="contact" className="relative w-full min-h-screen bg-[#1c1917] text-white flex flex-col items-center px-4 pt-24 pb-48 overflow-y-auto">
       
@@ -17,97 +47,115 @@ const Contact = () => {
           <h2 className="text-xl sm:text-2xl font-bold font-serif text-amber-500 drop-shadow-md">
             Reserva tu Mesa
           </h2>
-          <form 
-            action="https://formspree.io/f/xjywbcaq" 
-            method="POST" 
-            className="flex flex-col gap-3 bg-[#201d1a]/90 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-neutral-700/60 shadow-2xl"
-          >
-            <div className="relative flex items-center">
-              <span className="absolute left-3 text-amber-500 pointer-events-none">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </span>
-              <input type="text" name="nombre" placeholder="Nombre completo" required className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-white placeholder-stone-400 outline-none focus:border-amber-500 transition-colors" />
-            </div>
 
-            <div className="relative flex items-center">
-              <span className="absolute left-3 text-amber-500 pointer-events-none">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </span>
-              <input type="email" name="email" placeholder="Tu correo electrónico" required className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-white placeholder-stone-400 outline-none focus:border-amber-500 transition-colors" />
-            </div>
-
-            <div className="flex gap-2">
-              <div className="relative flex-1 flex items-center">
-                <span className="absolute left-3 text-amber-500 pointer-events-none">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </span>
-                <input 
-                  type="date" 
-                  name="fecha" 
-                  required 
-                  onClick={(e) => {
-                    try {
-                      (e.target as HTMLInputElement).showPicker();
-                    } catch {}
-                  }}
-                  className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-stone-200 outline-none focus:border-amber-500 transition-colors cursor-pointer" 
-                />
-              </div>
-              
-              <div className="relative flex-1 flex items-center">
-                <span className="absolute left-3 text-amber-500 pointer-events-none">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </span>
-                <input 
-                  type="time" 
-                  name="hora" 
-                  required 
-                  onClick={(e) => {
-                    try {
-                      (e.target as HTMLInputElement).showPicker();
-                    } catch {}
-                  }}
-                  className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-stone-200 outline-none focus:border-amber-500 transition-colors cursor-pointer" 
-                />
-              </div>
-            </div>
-
-            <div className="relative flex items-center">
-              <span className="absolute left-3 text-amber-500 pointer-events-none">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </span>
-              <select 
-                name="personas" 
-                required 
-                defaultValue=""
-                className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-stone-200 outline-none focus:border-amber-500 transition-colors cursor-pointer appearance-none"
+          {enviado ? (
+            <div className="bg-[#201d1a]/95 backdrop-blur-md p-8 rounded-2xl border border-amber-500/50 shadow-2xl text-center flex flex-col items-center gap-4">
+              <div className="w-12 h-12 bg-amber-500/20 text-amber-500 rounded-full flex items-center justify-center text-2xl">✓</div>
+              <h3 className="text-lg font-bold text-amber-400">¡Reserva enviada con éxito!</h3>
+              <p className="text-sm text-stone-300">Hemos recibido tu solicitud correctamente. Nos pondremos en contacto contigo pronto para confirmarla.</p>
+              <button 
+                onClick={() => setEnviado(false)} 
+                className="mt-2 text-xs text-amber-500 hover:underline cursor-pointer"
               >
-                <option value="" disabled className="text-stone-500">Número de personas</option>
-                <option value="1">1 persona</option>
-                <option value="2">2 personas</option>
-                <option value="3">3 personas</option>
-                <option value="4">4 personas</option>
-                <option value="5">5 personas</option>
-                <option value="6">6 o más personas</option>
-              </select>
+                Hacer otra reserva
+              </button>
             </div>
+          ) : (
+            <form 
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-3 bg-[#201d1a]/90 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-neutral-700/60 shadow-2xl"
+            >
+              <div className="relative flex items-center">
+                <span className="absolute left-3 text-amber-500 pointer-events-none">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </span>
+                <input type="text" name="nombre" placeholder="Nombre completo" required className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-white placeholder-stone-400 outline-none focus:border-amber-500 transition-colors" />
+              </div>
 
-            <textarea name="mensaje" placeholder="¿Alguna petición especial para tu mesa?" rows={3} className="w-full bg-[#141210] border border-neutral-700 rounded-lg p-3 text-sm text-white placeholder-stone-400 outline-none focus:border-amber-500 transition-colors resize-none"></textarea>
-            
-            <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-semibold py-3 rounded-lg transition-all mt-1 shadow-md cursor-pointer">
-              Enviar Solicitud
-            </button>
-          </form>
+              <div className="relative flex items-center">
+                <span className="absolute left-3 text-amber-500 pointer-events-none">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <input type="email" name="email" placeholder="Tu correo electrónico" required className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-white placeholder-stone-400 outline-none focus:border-amber-500 transition-colors" />
+              </div>
+
+              <div className="flex gap-2">
+                <div className="relative flex-1 flex items-center">
+                  <span className="absolute left-3 text-amber-500 pointer-events-none">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <input 
+                    type="date" 
+                    name="fecha" 
+                    required 
+                    onClick={(e) => {
+                      try {
+                        (e.target as HTMLInputElement).showPicker();
+                      } catch {}
+                    }}
+                    className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-stone-200 outline-none focus:border-amber-500 transition-colors cursor-pointer" 
+                  />
+                </div>
+                
+                <div className="relative flex-1 flex items-center">
+                  <span className="absolute left-3 text-amber-500 pointer-events-none">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                  <input 
+                    type="time" 
+                    name="hora" 
+                    required 
+                    onClick={(e) => {
+                      try {
+                        (e.target as HTMLInputElement).showPicker();
+                      } catch {}
+                    }}
+                    className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-stone-200 outline-none focus:border-amber-500 transition-colors cursor-pointer" 
+                  />
+                </div>
+              </div>
+
+              <div className="relative flex items-center">
+                <span className="absolute left-3 text-amber-500 pointer-events-none">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </span>
+                <select 
+                  name="personas" 
+                  required 
+                  defaultValue=""
+                  className="w-full bg-[#141210] border border-neutral-700 rounded-lg py-3 pl-10 pr-3 text-sm text-stone-200 outline-none focus:border-amber-500 transition-colors cursor-pointer appearance-none"
+                >
+                  <option value="" disabled className="text-stone-500">Número de personas</option>
+                  <option value="1">1 persona</option>
+                  <option value="2">2 personas</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                  <option value="5">5 personas</option>
+                  <option value="6">6 o más personas</option>
+                </select>
+              </div>
+
+              <textarea name="mensaje" placeholder="¿Alguna petición especial para tu mesa?" rows={3} className="w-full bg-[#141210] border border-neutral-700 rounded-lg p-3 text-sm text-white placeholder-stone-400 outline-none focus:border-amber-500 transition-colors resize-none"></textarea>
+              
+              {error && (
+                <p className="text-red-400 text-xs text-center">Hubo un error al enviar. Por favor, inténtalo de nuevo.</p>
+              )}
+
+              <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-semibold py-3 rounded-lg transition-all mt-1 shadow-md cursor-pointer">
+                Enviar Solicitud
+              </button>
+            </form>
+          )}
         </div>
 
         <div className="w-full md:w-1/2 flex flex-col gap-4">
