@@ -6,7 +6,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Función para manejar los anclajes si estás en otra página
+  // Función para manejar anclajes que siguen en la home (como reseñas si las tienes ahí)
   const handleScrollTo = (id: string) => {
     setIsOpen(false);
     if (location.pathname !== '/') {
@@ -29,21 +29,18 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center py-6 px-4 pointer-events-none">
       <div className="w-full max-w-5xl bg-[#1c1917]/90 backdrop-blur-md border border-neutral-800 rounded-full px-6 py-3 flex items-center justify-between shadow-2xl pointer-events-auto">
         
-        {/* Logo */}
         <Link to="/" className="text-xl font-bold font-serif text-white tracking-wide no-underline">
           CoffeeHouse
         </Link>
 
-        {/* Menú de Escritorio */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-300">
           <Link to="/" className="hover:text-amber-500 transition-colors no-underline">Inicio</Link>
           <Link to="/nosotros" className="hover:text-amber-500 transition-colors no-underline">Nosotros</Link>
-          <button onClick={() => handleScrollTo('menu')} className="hover:text-amber-500 transition-colors bg-transparent border-none cursor-pointer text-stone-300 text-sm font-medium">Menú</button>
+          <Link to="/menu" className="hover:text-amber-500 transition-colors no-underline">Menú</Link> {/* 👈 Cambiado a Link directo */}
           <button onClick={() => handleScrollTo('reviews')} className="hover:text-amber-500 transition-colors bg-transparent border-none cursor-pointer text-stone-300 text-sm font-medium">Reseñas</button>
           <Link to="/contacto" className="hover:text-amber-500 transition-colors no-underline">Contacto</Link>
         </nav>
 
-        {/* Botón de Escritorio */}
         <div className="hidden sm:flex items-center">
           <Link 
             to="/contacto" 
@@ -57,7 +54,6 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Botón Hamburguesa (Móvil) */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-stone-300 hover:text-amber-500 transition-colors focus:outline-none"
@@ -75,7 +71,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Menú Desplegable Móvil */}
       {isOpen && (
         <div className="absolute top-20 left-4 right-4 bg-[#1c1917]/95 backdrop-blur-xl border border-neutral-800 rounded-2xl p-6 flex flex-col gap-4 text-center md:hidden shadow-2xl pointer-events-auto">
           <Link to="/" onClick={() => setIsOpen(false)} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 no-underline">
@@ -84,9 +79,9 @@ const Header = () => {
           <Link to="/nosotros" onClick={() => setIsOpen(false)} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 no-underline">
             Nosotros
           </Link>
-          <button onClick={() => handleScrollTo('menu')} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 bg-transparent border-none cursor-pointer">
+          <Link to="/menu" onClick={() => setIsOpen(false)} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 no-underline">
             Menú
-          </button>
+          </Link> 
           <button onClick={() => handleScrollTo('reviews')} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 bg-transparent border-none cursor-pointer">
             Reseñas
           </button>
