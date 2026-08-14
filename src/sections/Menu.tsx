@@ -10,8 +10,12 @@ interface MenuItem {
 }
 
 const Menu = () => {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>(() => {
+    const savedMenu = localStorage.getItem('coffee_menu');
+    return savedMenu ? JSON.parse(savedMenu) : [];
+  });
+  
+  const [loading, setLoading] = useState(menuItems.length === 0);
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -21,6 +25,7 @@ const Menu = () => {
           console.error("Error al obtener el menú:", error.message);
         } else if (data) {
           setMenuItems(data);
+          localStorage.setItem('coffee_menu', JSON.stringify(data));
         }
       } catch (error) {
         console.error("Error de conexión:", error);
@@ -49,7 +54,7 @@ const Menu = () => {
         <p className="text-stone-400 text-sm mt-2">Elige tu café favorito preparado al momento</p>
       </div>
 
-      {loading ? (
+      {loading && menuItems.length === 0 ? (
         <p className="text-stone-400 py-12">Cargando menú desde la base de datos...</p>
       ) : (
         <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-24">

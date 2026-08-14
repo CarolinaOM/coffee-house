@@ -19,8 +19,8 @@ const Footer = () => {
             <Link to="/nosotros" className="hover:text-amber-500 transition-colors no-underline">
               Nosotros
             </Link>
-            <Link to="/menu" className="hover:text-amber-500 transition-colors no-underline">Menú</Link> {/* 👈 Cambiado a Link de ruta */}
-            <a href="/#reviews" className="hover:text-amber-500 transition-colors no-underline">Reseñas</a>
+            <Link to="/menu" className="hover:text-amber-500 transition-colors no-underline">Menú</Link>
+            <Link to="/resenas" className="hover:text-amber-500 transition-colors no-underline">Reseñas</Link> {/* 👈 Cambiado a Link de ruta */}
             <Link to="/contacto" className="hover:text-amber-500 transition-colors no-underline">
               Contacto
             </Link>

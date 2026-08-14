@@ -5,6 +5,7 @@ import About from './sections/About';
 import Contact from './sections/Contact'; 
 import Menu from './sections/Menu'; 
 import Footer from './components/Footer';
+import Reviews from './components/Reviews';
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
           <Route path="/nosotros" element={<About />} />
           <Route path="/menu" element={<Menu />} /> 
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/resenas" element={<Reviews />} />
         </Routes>
       </main>
 

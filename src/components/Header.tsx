@@ -1,29 +1,8 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  // Función para manejar anclajes que siguen en la home (como reseñas si las tienes ahí)
-  const handleScrollTo = (id: string) => {
-    setIsOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center py-6 px-4 pointer-events-none">
@@ -36,8 +15,8 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-300">
           <Link to="/" className="hover:text-amber-500 transition-colors no-underline">Inicio</Link>
           <Link to="/nosotros" className="hover:text-amber-500 transition-colors no-underline">Nosotros</Link>
-          <Link to="/menu" className="hover:text-amber-500 transition-colors no-underline">Menú</Link> {/* 👈 Cambiado a Link directo */}
-          <button onClick={() => handleScrollTo('reviews')} className="hover:text-amber-500 transition-colors bg-transparent border-none cursor-pointer text-stone-300 text-sm font-medium">Reseñas</button>
+          <Link to="/menu" className="hover:text-amber-500 transition-colors no-underline">Menú</Link>
+          <Link to="/resenas" className="hover:text-amber-500 transition-colors no-underline">Reseñas</Link>
           <Link to="/contacto" className="hover:text-amber-500 transition-colors no-underline">Contacto</Link>
         </nav>
 
@@ -82,9 +61,9 @@ const Header = () => {
           <Link to="/menu" onClick={() => setIsOpen(false)} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 no-underline">
             Menú
           </Link> 
-          <button onClick={() => handleScrollTo('reviews')} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 bg-transparent border-none cursor-pointer">
+          <Link to="/resenas" onClick={() => setIsOpen(false)} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 no-underline">
             Reseñas
-          </button>
+          </Link>
           <Link to="/contacto" onClick={() => setIsOpen(false)} className="text-stone-200 hover:text-amber-500 transition-colors text-base font-medium py-1.5 no-underline">
             Contacto
           </Link>
