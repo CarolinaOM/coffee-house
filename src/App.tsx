@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Reviews from './components/Reviews';
 
 function App() {
-  const location = useLocation();
+
 
 
   return (
