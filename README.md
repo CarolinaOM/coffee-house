@@ -13,7 +13,7 @@ Desarrollé este proyecto orientado al sector de la restauración y hostelería.
 
 ## ✨ Qué puede hacer la aplicación
 
-* **Menú interactivo en tiempo real:** Muestra las especialidades de café, descripciones y precios obtenidos directamente desde la base de datos de Supabase (con almacenamiento en caché local).
+* **Menú interactivo en tiempo real:** Muestra las especialidades de café, descripciones y precios obtenidos directamente desde la base de datos de Supabase.
 * **Sección de Nosotros y Galería:** Espacios visuales diseñados para mostrar el ambiente, la historia y los momentos únicos de la cafetería.
 * **Reseñas de clientes:** Apartado dedicado a mostrar las opiniones y valoraciones de los visitantes.
 * **Formulario de contacto integrado:** Permite a los usuarios enviar consultas y mensajes directos gestionados a través de Formspree.
