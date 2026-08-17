@@ -9,7 +9,7 @@ import Reviews from './components/Reviews';
 
 function App() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
+
 
   return (
     <div className="w-full h-screen bg-[#1c1917] text-white flex flex-col overflow-hidden relative">
