@@ -36,5 +36,5 @@ Si quieres probar el proyecto en tu máquina local:
 
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/CarolinaOM/coffee-house.git](https://github.com/CarolinaOM/coffee-house.git)
+   git clone [https://github.com/TU_USUARIO/coffee-house.git](https://github.com/TU_USUARIO/coffee-house.git)
    cd coffee-house
