@@ -9,7 +9,7 @@ Coffee House es una aplicación web moderna y elegante diseñada específicament
 
 ## 🎯 Sobre el Proyecto
 
-Desarrollé este proyecto para ofrecer una plataforma digital completa orientada al sector de la restauración y hostelería. Permite a los clientes explorar productos actualizados desde la base de datos, conocer la filosofía del local, ver galerías de imágenes y gestionar contacto directo de forma segura.
+Desarrollé este proyecto orientado al sector de la restauración y hostelería. Permite a los clientes explorar productos actualizados desde la base de datos, conocer la filosofía del local, ver galerías de imágenes y gestionar contacto directo de forma segura.
 
 ## ✨ Qué puede hacer la aplicación
 
